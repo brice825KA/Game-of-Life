@@ -4,10 +4,13 @@
 
 int main(int argv, char **argc) {
     WINDOW *wind = initscr();
-    auto x, y = 0;
+    int x, y = 0;
+    char *set = "==== Welcome to Automate Game of Life ====";
     noecho();
     getmaxyx(wind, y, x);
-    mvprintw(x/2, y/2, "==== Welcome to Automate Game of Life ====");
+    printw("%d", strlen(set));
+    move((y)/2, (x - strlen(set))/2);
+    printw("%s", set);
     while (auto key = getch()) {
         if (key == 'q')
             break;
