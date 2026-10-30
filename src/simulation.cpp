@@ -30,27 +30,41 @@ int Simulation::countliveweighbors(int row, int col) {
 }
 
 void Simulation::update() {
-    for (int i = 0; i < grid.getrows(); i += 1) {
-        for (int j = 0; j < grid.getcol(); j += 1) {
-            int liveweighbors = countliveweighbors(i, j);
-            int cellvalue = grid.GetValue(i, j);
+    if (IsRunning()) {
+        for (int i = 0; i < grid.getrows(); i += 1) {
+            for (int j = 0; j < grid.getcol(); j += 1) {
+                int liveweighbors = countliveweighbors(i, j);
+                int cellvalue = grid.GetValue(i, j);
 
-            if (cellvalue == 1) {
-                if (liveweighbors > 3 || liveweighbors < 2)
-                    tempgrid.SetValue(i, j, 0);
-                else
-                    tempgrid.SetValue(i, j, 1);
-            }
-            else {
-                if (liveweighbors == 3)
-                    tempgrid.SetValue(i, j, 1);
-                else
-                    tempgrid.SetValue(i, j, 0);
+                if (cellvalue == 1) {
+                    if (liveweighbors > 3 || liveweighbors < 2)
+                        tempgrid.SetValue(i, j, 0);
+                    else
+                        tempgrid.SetValue(i, j, 1);
+                }
+                else {
+                    if (liveweighbors == 3)
+                        tempgrid.SetValue(i, j, 1);
+                    else
+                        tempgrid.SetValue(i, j, 0);
+                }
             }
         }
+        grid = tempgrid;
     }
-    grid = tempgrid;
 }
 
+void Simulation::ClearGrid() {
+    if (IsRunning())
+        grid.Clear();
+}
 
+void Simulation::CreateRandState() {
+    if (!IsRunning())
+        grid.FillRandom();
+}
 
+void Simulation::ToggleCell(int row, int col) {
+    if (IsRunning())
+        grid.ToggleCell(row, col);
+}

@@ -10,7 +10,7 @@
 
     #define FPS 10
     #define GREY Color (19, 19, 19, 225)
-    #define CELL_SIZE 4
+    #define CELL_SIZE 25
     #define RE return
 
 class Grid {
@@ -25,6 +25,8 @@ class Grid {
         int getrows() {return rows;};
         int getcol() {return colums;}
         void FillRandom();
+        void Clear();
+        void ToggleCell(int row, int col);
     private:
         int rows;
         int colums;
@@ -35,14 +37,21 @@ class Grid {
 class Simulation {
     public:
         Simulation(int width, int height, int cellsize)
-        : grid(width, height, cellsize), tempgrid(width, height, CELL_SIZE) {grid.FillRandom();};
+        : grid(width, height, cellsize), tempgrid(width, height, CELL_SIZE), run(false) {};
         void draw(void);
         void setcellvalue(int row, int column, int value);
         int countliveweighbors(int row, int col);
         void update();
+        bool IsRunning() {return run;};
+        void Start() {run = true;};
+        void Stop() {run = false;};
+        void ClearGrid();
+        void CreateRandState();
+        void ToggleCell(int row, int col);
     private:
         Grid grid;
         Grid tempgrid;
+        bool run;
 };
 
 #endif

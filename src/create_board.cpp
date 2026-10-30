@@ -34,3 +34,17 @@ void Grid::FillRandom(){
         }
     }
 }
+
+void Grid::Clear() {
+    for (auto i = 0; i < rows; i += 1) {
+        for (auto j = 0; j < colums; j += 1) {
+            cells[i][j] = 0;
+        }
+    } 
+}
+
+void Grid::ToggleCell(int row, int col) {
+    if (Iswidthbounds(row, col)) {
+        cells[row][col] = !cells[row][col];
+    }
+}
