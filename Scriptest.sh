@@ -11,7 +11,7 @@ echo "Install Criterion for unittests"
 sudo apt-get install -y libcriterion-dev
 
 echo "Setup Raylib from source"
-git clone --depth 1 git@github.com:raysan5/raylib.git raylib_src
+git clone --depth 1 https://github.com/raysan5/raylib raylib_src
 cd raylib_src/src
 make PLATFORM=PLATFORM_DESKTOP
 sudo make install
@@ -25,5 +25,6 @@ if [[ -f "$BIN" ]]; then
     exit 84
 else
     echo "Make Succes"
-    ./"$BIN"
+    xvfb-run ./"$BIN"
     exit 0
+fi
