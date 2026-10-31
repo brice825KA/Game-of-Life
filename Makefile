@@ -18,7 +18,6 @@ all: $(bin)
 
 $(bin): $(obj)
 	    $(comp) $(obj) $(cxxflags) $(ldflags) -o $(bin)
-		rm *.o src/*.o
 
 %.o: %.cpp
 	$(comp) $(cxxflags) -c $< -o $@
