@@ -21,10 +21,10 @@ rm -rf raylib_src
 echo "Run make"
 make
 if [[ -f "$BIN" ]]; then
-    echo "Make Failed"
-    exit 84
-else
     echo "Make Succes"
     xvfb-run ./"$BIN"
     exit 0
+else
+    echo "Make Failed"
+    exit 84
 fi
