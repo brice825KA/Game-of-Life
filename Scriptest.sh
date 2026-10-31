@@ -22,7 +22,6 @@ echo "Run make"
 make
 if [[ -f "$BIN" ]]; then
     echo "Make Succes"
-    xvfb-run ./"$BIN"
     exit 0
 else
     echo "Make Failed"
