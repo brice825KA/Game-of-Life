@@ -11,7 +11,7 @@ echo "Install Criterion for unittests"
 sudo apt-get install -y libcriterion-dev
 
 echo "Setup Raylib from source"
-git clone --depth 1 https://github.com raylib_src
+git clone --depth 1 git@github.com:raysan5/raylib.git raylib_src
 cd raylib_src/src
 make PLATFORM=PLATFORM_DESKTOP
 sudo make install
